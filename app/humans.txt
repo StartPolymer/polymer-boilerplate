@@ -1,0 +1,16 @@
+/* TEAM */
+Company:    
+Developer:  
+Site:       
+From:       
+
+/* THANKS */
+Names:       Google, GitHub
+
+/* SITE */
+Design:      Material Design from Google
+Library:     Polymer from Google
+Standards:   HTML5, CSS3, Web Components
+Tools:       Start Polymer, HTML5 Boilerplate, Sass, Autoprefixer, PageSpeed Insights
+Doctype:     HTML5
+Language:    
