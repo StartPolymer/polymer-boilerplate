@@ -1,7 +1,17 @@
 @import '../bower_components/polymer-theme/sass/modules/all';
 
+// Roboto Font Combinations
+$heading-font-name:     'raleway';
+$font-lang:             'en';
+$heading-font:          roboto-font($heading-font-name, 'heading');
+$body-font:             roboto-font($heading-font-name, 'body');
+@import url(roboto-font($heading-font-name, 'url') + '&lang=' + $font-lang);
+
 .polymer-theme {
   @import 'variables';
+  font-size: 4em;
+  $h1-font-size-base: 4em;
+
   @import '../bower_components/polymer-theme/sass/base';
 
   /deep/ {
@@ -10,7 +20,7 @@
 
   core-icon[icon="custom-icons:polymer"] {
     color: $primary-color;
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
   }
 }
