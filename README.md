@@ -8,6 +8,7 @@ for Polymer projects.
 ## Features
 
 - Built with HTML5 Boilerplate and [Polymer Theme](https://github.com/StartPolymer/polymer-theme)
+- [Custom Icons](https://github.com/StartPolymer/polymer-base-template/blob/master/app/elements/custom-icons/custom-icons.html) element
 - Quick deploy to GitHub pages
 - SASS/SCSS
 - Autoprefixer
