@@ -3,7 +3,7 @@
 Polymer base template using modern tools.
 
 Based on [Yeoman generator](https://github.com/yeoman/generator-polymer)
-for Polymer projects.
+v0.6.3
 
 ## Features
 
