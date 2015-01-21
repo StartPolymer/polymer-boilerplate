@@ -10,7 +10,7 @@ $body-font:             roboto-font($heading-font-name, 'body');
 .polymer-theme {
   @import 'variables';
   font-size: 4em;
-  $h1-font-size-base: 4em;
+  $h1-font-size-base: 3em;
 
   @import '../bower_components/polymer-theme/sass/base';
 
@@ -20,7 +20,7 @@ $body-font:             roboto-font($heading-font-name, 'body');
 
   core-icon[icon="custom-icons:polymer"] {
     color: $primary-color;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
   }
 }
