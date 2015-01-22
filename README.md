@@ -11,9 +11,9 @@ v0.6.3
 
 - Built with [HTML5 Boilerplate](https://html5boilerplate.com)
 - Using [Polymer Theme](https://github.com/StartPolymer/polymer-theme)
-- [Custom Icons](https://github.com/StartPolymer/polymer-base-template/blob/master/app/elements/custom-icons/custom-icons.html) element
+- [Custom Icons](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/elements/custom-icons/custom-icons.html) element
 - Quick deploy to [GitHub Pages](https://pages.github.com)
-- [Sass](http://sass-lang.com) CSS preprocessor
+- [Sass](http://sass-lang.com) CSS preprocessor with Ruby
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
 - [web-component-tester](https://github.com/Polymer/web-component-tester) support

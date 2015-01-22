@@ -9,6 +9,7 @@ $body-font:             roboto-font($heading-font-name, 'body');
 
 .polymer-theme {
   @import 'variables';
+  // Temporary variables
   font-size: 4em;
   $h1-font-size-base: 3em;
 
