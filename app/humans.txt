@@ -1,13 +1,19 @@
-/* TEAM */
-Company:    
-Developer:  
-Site:       
-From:       
+# humanstxt.org/
+# The humans responsible & technology colophon
 
-/* THANKS */
+# TEAM
+
+Company:
+Developer:
+Site:
+From:
+
+# THANKS
+
 Names:       Google, GitHub
 
-/* SITE */
+# SITE
+
 Design:      Material Design from Google
 Library:     Polymer from Google
 Standards:   HTML5, CSS3, Web Components
