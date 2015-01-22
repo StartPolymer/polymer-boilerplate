@@ -9,19 +9,9 @@ $body-font:             roboto-font($heading-font-name, 'body');
 
 .polymer-theme {
   @import 'variables';
-  // Temporary variables
-  font-size: 4em;
-  $h1-font-size-base: 3em;
-
   @import '../bower_components/polymer-theme/sass/base';
 
   /deep/ {
     @import '../bower_components/polymer-theme/sass/elements/all';
-  }
-
-  core-icon[icon="custom-icons:polymer"] {
-    color: $primary-color;
-    width: 300px;
-    height: 300px;
   }
 }

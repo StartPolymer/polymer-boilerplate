@@ -5,10 +5,7 @@
     var template = document.querySelector('template[is=auto-binding]');
 
     template.addEventListener('template-bound', function() {
-      // Register Custom SVG Icons
-      var setName = 'custom-icons';
-      var icons = template.$.meta.byId(setName).iconNames;
-      template.icons = icons.map(function(ic){ return setName + ':' + ic; });
+      
     });
   });
 
