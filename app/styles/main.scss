@@ -1,4 +1,4 @@
-@import '../bower_components/polymer-theme/sass/modules/all';
+@import '../../bower_components/polymer-theme/sass/modules/all';
 
 // Roboto Font Combinations
 $heading-font-name:     'raleway';
@@ -9,9 +9,9 @@ $body-font:             roboto-font($heading-font-name, 'body');
 
 .polymer-theme {
   @import 'variables';
-  @import '../bower_components/polymer-theme/sass/base';
+  @import '../../bower_components/polymer-theme/sass/base';
 
   /deep/ {
-    @import '../bower_components/polymer-theme/sass/elements/all';
+    @import '../../bower_components/polymer-theme/sass/elements/all';
   }
 }
