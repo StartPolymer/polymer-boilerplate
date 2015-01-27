@@ -4,8 +4,10 @@ Polymer Boilerplate is template using Web Components and modern tools.
 
 Fork this repo if you want to start your own application using Polymer.
 
-Based on [Yeoman generator](https://github.com/yeoman/generator-polymer)
+Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer)
 v0.6.3
+and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp)
+v0.2.0
 
 ## Features
 
@@ -26,7 +28,7 @@ v0.6.3
 sudo add-apt-repository -y ppa:brightbox/ruby-ng
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y nodejs ruby2.2
-sudo npm install -g bower grunt-cli
+sudo npm install -g npm bower grunt-cli gulp
 sudo gem install sass
 ```
 
@@ -34,6 +36,18 @@ sudo gem install sass
 
 ```sh
 git clone <Fork of this repository>
-npm install && bower install
+```
+
+### Gulp
+
+```sh
+bower install && npm install
+gulp serve
+```
+
+### Grunt
+
+```sh
+bower install && npm install package-grunt.json
 grunt serve
 ```
