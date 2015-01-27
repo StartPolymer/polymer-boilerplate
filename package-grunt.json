@@ -1,7 +1,8 @@
 {
-  "name": "polymer-boilerplate",
-  "version": "0.0.0",
-  "dependencies": {},
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "devDependencies": {
     "connect-livereload": "^0.5.2",
     "grunt": "^0.4.5",
@@ -27,8 +28,5 @@
     "serve-static": "^1.7.1",
     "time-grunt": "^1.0.0",
     "web-component-tester": "^2.0.3"
-  },
-  "engines": {
-    "node": ">=0.10.0"
   }
 }
