@@ -104,6 +104,7 @@ gulp.task('serve', ['styles', 'fonts'], function () {
     '.tmp/styles/**/*.css',
     '.tmp/elements/**/*.css',
     'app/scripts/**/*.js',
+    'app/elements/**/*.js',
     'app/images/**/*'
   ]).on('change', reload);
 
