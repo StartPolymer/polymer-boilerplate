@@ -46,6 +46,8 @@ gulp serve
 ### Grunt
 
 ```sh
-bower install && npm install package-grunt.json
+mv package.json package-gulp.json
+mv package-grunt.json package.json
+bower install && npm install
 grunt serve
 ```
