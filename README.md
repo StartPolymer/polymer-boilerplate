@@ -28,7 +28,6 @@ v0.2.0
 sudo add-apt-repository -y ppa:brightbox/ruby-ng
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y nodejs ruby2.2
-sudo npm cache clear
 sudo npm install -g npm bower grunt-cli gulp
 sudo gem install sass
 ```
