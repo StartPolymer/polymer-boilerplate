@@ -5,9 +5,7 @@ Polymer Boilerplate is template using Web Components and modern tools.
 Fork this repo if you want to start your own application using Polymer.
 
 Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer)
-v0.6.3
 and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp)
-v0.2.0
 
 ## Features
 
