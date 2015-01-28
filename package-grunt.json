@@ -27,6 +27,5 @@
     "load-grunt-tasks": "^2.0.0",
     "serve-static": "^1.7.1",
     "time-grunt": "^1.0.0",
-    "web-component-tester": "^2.0.3"
   }
 }
