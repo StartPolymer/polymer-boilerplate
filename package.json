@@ -26,7 +26,6 @@
     "jshint-stylish": "^1.0.0",
     "main-bower-files": "^2.1.0",
     "opn": "^1.0.0",
-    "web-component-tester": "^2.1.2",
     "wiredep": "^2.0.0"
   }
 }

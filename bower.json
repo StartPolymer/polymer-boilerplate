@@ -8,6 +8,5 @@
     "polymer-theme": "StartPolymer/polymer-theme#^1.0.1"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^2.0.0"
   }
 }

@@ -51,3 +51,10 @@ mv package-grunt.json package.json
 bower install && npm install
 grunt serve
 ```
+
+### [web-component-tester](https://github.com/Polymer/web-component-tester)
+
+```
+bower install web-component-tester --save-dev
+npm install web-component-tester --save-dev
+```
