@@ -67,8 +67,8 @@ module.exports = function (grunt) {
     sass: {
       options: {
         // libSass
-        //includePaths: ['bower_components']
-        loadPath: 'bower_components'
+        //includePaths: ['.']
+        loadPath: '.'
         },
       dist: {
         options: {
@@ -124,6 +124,7 @@ module.exports = function (grunt) {
           middleware: function () {
             return [
               lrSnippet,
+              mountFolder('.'),
               mountFolder('.tmp'),
               mountFolder(yeomanConfig.app)
             ];
@@ -137,6 +138,7 @@ module.exports = function (grunt) {
           },
           middleware: function () {
             return [
+              mountFolder('.'),
               mountFolder('.tmp'),
               mountFolder(yeomanConfig.app)
             ];
