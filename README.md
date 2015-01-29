@@ -14,8 +14,10 @@ and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp)
 - [Custom Icons](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/elements/custom-icons/custom-icons.html) element
 - Quick deploy to [GitHub Pages](https://pages.github.com)
 - [Sass](http://sass-lang.com) CSS preprocessor with Ruby
-- [Autoprefixer](https://github.com/postcss/autoprefixer)
+- [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
+- Built-in preview server with [BrowserSync](http://www.browsersync.io)
+- Automagically wire-up dependencies installed with [Bower](http://bower.io)
 - [web-component-tester](https://github.com/Polymer/web-component-tester) support
 
 ## Installation
@@ -32,18 +34,31 @@ sudo gem install sass
 
 ## Usage
 
+### Clone fork of this repository
+
 ```sh
 git clone <Fork of this repository>
 ```
 
-### Gulp
+### Install dependencies
 
 ```sh
 bower install && npm install
+```
+
+### Serve to http://localhost:9000
+
+```sh
 gulp serve
 ```
 
-### Grunt
+### Build
+
+```sh
+gulp
+```
+
+### Usage Grunt instead of the Gulp
 
 ```sh
 mv package.json package-gulp.json
@@ -58,3 +73,8 @@ grunt serve
 bower install web-component-tester --save-dev
 npm install web-component-tester --save-dev
 ```
+
+## Extending
+
+Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
+for integrating other popular technologies like CoffeeScript
