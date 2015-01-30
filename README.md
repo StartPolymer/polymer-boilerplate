@@ -81,3 +81,7 @@ npm install web-component-tester --save-dev
 
 Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
 for integrating other popular technologies like CoffeeScript
+
+## [MIT License](https://github.com/StartPolymer/polymer-boilerplate/blob/master/LICENSE)
+
+Copyright (c) 2015 Start Polymer ([https://startpolymer.org](https://startpolymer.org))
