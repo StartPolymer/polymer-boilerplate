@@ -46,7 +46,10 @@ git clone <Fork of this repository>
 bower install && npm install
 ```
 
-### Serve to `http://localhost:9000`
+### Serve to local and external URL
+
+- `http://localhost:9000`
+- `http://<IP>:9000`
 
 ```sh
 gulp serve
