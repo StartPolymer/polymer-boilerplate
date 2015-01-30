@@ -5,7 +5,7 @@ Polymer Boilerplate is template using Web Components and modern tools.
 Fork this repo if you want to start your own application using Polymer.
 
 Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer)
-and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp)
+and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp).
 
 ## Features
 
@@ -80,7 +80,7 @@ npm install web-component-tester --save-dev
 ## Extending
 
 Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
-for integrating other popular technologies like CoffeeScript
+for integrating other popular technologies like CoffeeScript.
 
 ## [MIT License](https://github.com/StartPolymer/polymer-boilerplate/blob/master/LICENSE)
 
