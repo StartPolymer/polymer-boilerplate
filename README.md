@@ -61,6 +61,20 @@ gulp serve
 gulp
 ```
 
+### PageSpeed Insights
+
+```sh
+gulp pagespeed
+```
+
+#### Variables in gulpfile.js
+
+```javascript
+var pageSpeedSite = 'https://startpolymer.org'; // change it
+var pageSpeedStrategy = 'mobile'; // desktop
+var pageSpeedKey = ''; // nokey is true
+```
+
 ### Usage Grunt instead of the Gulp
 
 ```sh

@@ -1,9 +1,15 @@
 /*global -$ */
 'use strict';
+
+var pageSpeedSite = 'https://startpolymer.org'; // change it
+var pageSpeedStrategy = 'mobile'; // desktop
+var pageSpeedKey = ''; // nokey is true
+
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var pageSpeed = require('psi');
 
 gulp.task('styles', function () {
   //return gulp.src([
@@ -145,6 +151,30 @@ gulp.task('wiredep', function () {
     }))
     .pipe(gulp.dest('app'));
 });
+
+
+// Run PageSpeed Insights
+// Please feel free to use the `nokey` option to try out PageSpeed
+// Insights as part of your build process. For more frequent use,
+// we recommend registering for your own API key. For more info:
+// https://developers.google.com/speed/docs/insights/v1/getting_started
+gulp.task('pagespeed', function () {
+  return pageSpeed(pageSpeedSite, {
+    nokey: 'true',
+    // key: pageSpeedKey,
+    strategy: pageSpeedStrategy
+  }, function (err, data) {
+    console.log('Site: ' + pageSpeedSite);
+    console.log('Strategy: ' + pageSpeedStrategy);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Score: ' + data.score);
+      console.log(data.pageStats);
+    }
+  });
+});
+
 
 gulp.task('build', ['jshint', 'html', 'vulcanize', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
