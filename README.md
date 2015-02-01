@@ -4,8 +4,9 @@ Polymer Boilerplate is template using Web Components and modern tools.
 
 Fork this repo if you want to start your own application using Polymer.
 
-Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer)
-and [Gulp generator](https://github.com/yeoman/generator-gulp-webapp).
+Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer),
+[Gulp generator](https://github.com/yeoman/generator-gulp-webapp) and
+[Web Starter Kit](https://github.com/google/web-starter-kit).
 
 ## Features
 
@@ -67,7 +68,7 @@ gulp
 gulp pagespeed
 ```
 
-#### Variables in gulpfile.js
+Variables in [gulpfile.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulpfile.js)
 
 ```javascript
 var pageSpeedSite = 'https://startpolymer.org'; // change it
@@ -80,7 +81,7 @@ var pageSpeedKey = ''; // nokey is true
 ```sh
 mv package.json package-gulp.json
 mv package-grunt.json package.json
-bower install && npm install
+npm install
 grunt serve
 ```
 
