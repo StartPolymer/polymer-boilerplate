@@ -62,6 +62,31 @@ gulp serve
 gulp
 ```
 
+### Deploy to [GitHub Pages](https://pages.github.com)
+
+First you need to be sure you have a gh-pages branch. If you don't have one, you can do the following:
+
+```sh
+git checkout --orphan gh-pages
+git rm -rf .
+touch README.md
+git add README.md
+git commit -m "Init gh-pages"
+git push --set-upstream origin gh-pages
+git checkout master
+```
+
+```sh
+gulp deploy
+```
+
+Variables in [gulpfile.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulpfile.js)
+
+```javascript
+var ghPagesOrigin = 'origin';
+var ghPagesBranch = 'gh-pages';
+```
+
 ### PageSpeed Insights
 
 ```sh

@@ -1,6 +1,11 @@
 /*global -$ */
 'use strict';
 
+// GitHub Pages
+var ghPagesOrigin = 'origin';
+var ghPagesBranch = 'gh-pages';
+
+// PageSpeed Insights
 var pageSpeedSite = 'https://startpolymer.org'; // change it
 var pageSpeedStrategy = 'mobile'; // desktop
 var pageSpeedKey = ''; // nokey is true
@@ -150,6 +155,16 @@ gulp.task('wiredep', function () {
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
+});
+
+
+// Deploy to GitHub Pages
+gulp.task('deploy', function () {
+    return gulp.src('dist/**/*')
+        .pipe($.ghPages({
+          origin: ghPagesOrigin,
+          branch: ghPagesBranch
+        }));
 });
 
 
