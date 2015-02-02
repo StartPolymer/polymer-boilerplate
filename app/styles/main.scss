@@ -4,7 +4,7 @@
 @import 'bower_components/polymer-theme/sass/modules/all';
 
 // Roboto Font Combinations
-$heading-font-name:     'raleway';
+$heading-font-name:     'roboto-slab';
 $font-lang:             'en';
 $heading-font:          roboto-font($heading-font-name, 'heading');
 $body-font:             roboto-font($heading-font-name, 'body');

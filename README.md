@@ -56,6 +56,12 @@ bower install && npm install
 gulp serve
 ```
 
+Build and serve the output from the dist build
+
+```sh
+gulp serve:dist
+```
+
 ### Build
 
 ```sh
