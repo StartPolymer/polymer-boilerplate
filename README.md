@@ -76,7 +76,7 @@ gulp serve:dist
 gulp
 ```
 
-### Deploy to [GitHub Pages](https://pages.github.com)
+### Deploy to GitHub Pages
 
 First you need to be sure you have a gh-pages branch. If you don't have one, you can do the following:
 
@@ -115,7 +115,7 @@ var pageSpeedStrategy = 'mobile'; // desktop
 var pageSpeedKey = ''; // nokey is true
 ```
 
-### [web-component-tester](https://github.com/Polymer/web-component-tester)
+### Install web-component-tester
 
 ```
 bower install web-component-tester --save-dev
