@@ -4,16 +4,19 @@ Polymer Boilerplate is template using Web Components and modern tools.
 
 Fork this repo if you want to start your own application using Polymer.
 
-Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer),
-[Gulp generator](https://github.com/yeoman/generator-gulp-webapp) and
-[Web Starter Kit](https://github.com/google/web-starter-kit).
+Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
+[Web Starter Kit](https://github.com/google/web-starter-kit),
+[Polymer generator](https://github.com/yeoman/generator-polymer) and
+[Gulp generator](https://github.com/yeoman/generator-gulp-webapp).
 
 ## Features
 
-- Built with [HTML5 Boilerplate](https://html5boilerplate.com)
 - Using [Polymer Theme](https://github.com/StartPolymer/polymer-theme)
 - [Custom Icons](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/elements/custom-icons/custom-icons.html) element
-- Quick deploy to [GitHub Pages](https://pages.github.com)
+- [Nunjucks](http://mozilla.github.io/nunjucks/) templating language heavily inspired by [jinja2](http://jinja.pocoo.org)
+- Quick deploy to [GitHub Pages](https://pages.github.com) -
+Free [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) hosting -
+[more info](https://github.com/blog/1715-faster-more-awesome-github-pages)
 - [Sass](http://sass-lang.com) CSS preprocessor with Ruby
 - [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
@@ -26,10 +29,15 @@ Inspired by [Polymer generator](https://github.com/yeoman/generator-polymer),
 ### Tools on Ubuntu
 
 ```sh
+// Add Ruby repository
 sudo add-apt-repository -y ppa:brightbox/ruby-ng
+// Script to install NodeSource repository
 curl -sL https://deb.nodesource.com/setup | sudo bash -
+// Install Node.js and Ruby
 sudo apt-get install -y nodejs ruby2.2
-sudo npm install -g npm bower grunt-cli gulp
+// Install Bower, Gulp and NPM
+sudo npm install -g bower gulp npm
+// Install Sass
 sudo gem install sass
 ```
 
@@ -105,15 +113,6 @@ Variables in [gulpfile.js](https://github.com/StartPolymer/polymer-boilerplate/b
 var pageSpeedSite = 'https://startpolymer.org'; // change it
 var pageSpeedStrategy = 'mobile'; // desktop
 var pageSpeedKey = ''; // nokey is true
-```
-
-### Usage Grunt instead of the Gulp
-
-```sh
-mv package.json package-gulp.json
-mv package-grunt.json package.json
-npm install
-grunt serve
 ```
 
 ### [web-component-tester](https://github.com/Polymer/web-component-tester)
