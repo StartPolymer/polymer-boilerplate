@@ -29,15 +29,15 @@ Free [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) hosting -
 ### Tools on Ubuntu
 
 ```sh
-// Add Ruby repository
+# Add Ruby repository
 sudo add-apt-repository -y ppa:brightbox/ruby-ng
-// Script to install NodeSource repository
+# Script to install NodeSource repository
 curl -sL https://deb.nodesource.com/setup | sudo bash -
-// Install Node.js and Ruby
+# Install Node.js and Ruby
 sudo apt-get install -y nodejs ruby2.2
-// Install Bower, Gulp and NPM
+# Install Bower, Gulp and NPM
 sudo npm install -g bower gulp npm
-// Install Sass
+# Install Sass
 sudo gem install sass
 ```
 
