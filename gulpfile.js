@@ -15,6 +15,7 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var pageSpeed = require('psi');
+var streamqueue = require('streamqueue');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -29,7 +30,7 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 // Compile and Automatically Prefix Stylesheets
-gulp.task('styles', ['elements'], function () {
+gulp.task('styles', function () {
   // LibSass
   //return gulp.src([
   //    'app/styles/**/*.css',
@@ -41,54 +42,34 @@ gulp.task('styles', ['elements'], function () {
       onError: console.error.bind(console)
     }))
     .pipe($.sourcemaps.write())*/
-  return $.rubySass('app/styles/', {
-      style: 'expanded',
-      precision: 10,
-      loadPath: ['.']
-      //sourcemap: true
-    })
-    .on('error', function (err) {
-      console.error('Error!', err.message);
-    })
+  return streamqueue({ objectMode: true },
+      $.rubySass('app/styles/', {
+        container: 'gulp-ruby-sass-styles',
+        style: 'expanded',
+        precision: 10,
+        loadPath: ['.']
+        //sourcemap: true
+      })
+      .on('error', function (err) {
+        console.error('Error!', err.message);
+      }),
+      $.rubySass('app/elements/', {
+        container: 'gulp-ruby-sass-elements',
+        style: 'expanded',
+        precision: 10,
+        loadPath: ['.']
+        //sourcemap: true
+      })
+      .on('error', function (err) {
+        console.error('Error!', err.message);
+      })
+    )
+    .pipe($.concat('main.css'))
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: AUTOPREFIXER_BROWSERS})
     ]))
     .pipe(gulp.dest('.tmp/styles'))
-    // Concatenate And Minify Styles
-    //.pipe($.if('*.css', $.csso()))
-    //.pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
-});
-
-gulp.task('elements', function () {
-  // LibSass
-  //return gulp.src([
-  //    'app/elements/**/*.css',
-  //    'app/elements/**/*.scss'
-  /*  ])
-    .pipe($.changed('elements', {extension: '.scss'}))
-    .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      onError: console.error.bind(console)
-    }))
-    .pipe($.sourcemaps.write())*/
-  return $.rubySass('app/elements/', {
-      style: 'expanded',
-      precision: 10,
-      loadPath: ['.']
-      //sourcemap: true
-    })
-    .on('error', function (err) {
-      console.error('Error!', err.message);
-    })
-    .pipe($.postcss([
-      require('autoprefixer-core')({browsers: AUTOPREFIXER_BROWSERS})
-    ]))
-    .pipe(gulp.dest('.tmp/elements'))
-    // Concatenate And Minify Styles
-    //.pipe($.if('*.css', $.csso()))
-    //.pipe(gulp.dest('dist/elements'))
-    .pipe($.size({title: 'elements'}));
 });
 
 // Lint JavaScript
@@ -115,7 +96,7 @@ gulp.task('html', ['styles'], function () {
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     // Concatenate And Minify Styles
-    // In case you are still using useref build blocks
+    // Issue https://github.com/css/csso/issues/209
     //.pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
