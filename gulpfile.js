@@ -87,10 +87,10 @@ gulp.task('jshint', function () {
 });
 
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', ['styles'], function () {
+gulp.task('html', ['views', 'styles'], function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-  return gulp.src(['app/**/*.html', '!app/{elements,test}/**/*.html'])
+  return gulp.src(['app/**/*.html', '.tmp/*.html', '!app/{elements,test}/**/*.html'])
     // Replace path for vulcanized assets
     .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.vulcanized.html')))
     .pipe(assets)
@@ -107,6 +107,13 @@ gulp.task('html', ['styles'], function () {
     })))
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
+});
+
+// Jade
+gulp.task('views', function () {
+  return gulp.src('app/*.jade')
+    .pipe($.jade({pretty: true}))
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Vulcanize imports
@@ -146,7 +153,8 @@ gulp.task('fonts', function () {
 gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
-    '!app/*.html'
+    '!app/*.html',
+    '!app/*.jade'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'))
@@ -157,7 +165,7 @@ gulp.task('extras', function () {
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'fonts'], function () {
+gulp.task('serve', ['views', 'styles', 'fonts'], function () {
   browserSync({
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
@@ -176,11 +184,13 @@ gulp.task('serve', ['styles', 'fonts'], function () {
   // watch for changes
   gulp.watch([
     'app/**/*.html',
+    '.tmp/**/*.html',
     '.tmp/styles/**/*.css',
     '.tmp/elements/**/*.css',
     'app/images/**/*'
   ]).on('change', reload);
 
+  gulp.watch('app/**/*.jade', ['views', reload]);
   gulp.watch('app/styles/**/*.scss', ['styles', reload]);
   gulp.watch('app/elements/**/*.scss', ['styles', reload]);
   gulp.watch('app/scripts/**/*.js', ['jshint', reload]);
@@ -211,7 +221,7 @@ gulp.task('wiredep', function () {
     }))
     .pipe(gulp.dest('app/styles'));
 
-  gulp.src('app/*.html')
+  gulp.src('app/layouts/*.jade')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)*\.\./
     }))
