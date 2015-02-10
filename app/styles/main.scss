@@ -18,3 +18,10 @@ $body-font:             roboto-font($heading-font-name, 'body');
     @import 'bower_components/polymer-theme/sass/elements/all';
   }
 }
+
+.browserupgrade {
+  background: #ccc;
+  color: #000;
+  margin: .2em 0;
+  padding: .2em 0;
+}

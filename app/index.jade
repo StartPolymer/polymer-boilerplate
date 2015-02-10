@@ -1,3 +1,22 @@
 extends layouts/default
 
 block content
+	core-drawer-panel
+		// Drawer
+		core-header-panel(drawer)
+			// Drawer Toolbar
+			core-toolbar Menu
+			// Drawer Content
+			core-menu(selected='0')
+				core-item(label='Yo')
+				core-item(label='Polymer')
+				core-item(label='App')
+		// Main
+		core-header-panel(main)
+			// Main Toolbar
+			core-toolbar
+				paper-icon-button(icon='menu', core-drawer-toggle)
+				span {{appName}}
+			// Main Content
+			.hero-unit
+				p You now have

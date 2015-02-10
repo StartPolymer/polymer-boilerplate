@@ -1,4 +1,4 @@
-/*global -$ */
+/* global -$ */
 'use strict';
 
 // GitHub Pages
@@ -10,12 +10,16 @@ var pageSpeedSite = 'https://startpolymer.org'; // change it
 var pageSpeedStrategy = 'mobile'; // desktop
 var pageSpeedKey = ''; // nokey is true
 
+// Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var del = require('del');
+var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var pageSpeed = require('psi');
-var streamqueue = require('streamqueue');
+var merge = require('merge-stream');
+var mainBowerFiles = require('main-bower-files');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -28,49 +32,6 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
-
-// Compile and Automatically Prefix Stylesheets
-gulp.task('styles', function () {
-  // LibSass
-  //return gulp.src([
-  //    'app/styles/**/*.css',
-  //    'app/styles/**/*.scss'
-  /*  ])
-    .pipe($.changed('styles', {extension: '.scss'}))
-    .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      onError: console.error.bind(console)
-    }))
-    .pipe($.sourcemaps.write())*/
-  return streamqueue({ objectMode: true },
-      $.rubySass('app/styles/', {
-        container: 'gulp-ruby-sass-styles',
-        style: 'expanded',
-        precision: 10,
-        loadPath: ['.']
-        //sourcemap: true
-      })
-      .on('error', function (err) {
-        console.error('Error!', err.message);
-      }),
-      $.rubySass('app/elements/', {
-        container: 'gulp-ruby-sass-elements',
-        style: 'expanded',
-        precision: 10,
-        loadPath: ['.']
-        //sourcemap: true
-      })
-      .on('error', function (err) {
-        console.error('Error!', err.message);
-      })
-    )
-    .pipe($.concat('main.css'))
-    .pipe($.postcss([
-      require('autoprefixer-core')({browsers: AUTOPREFIXER_BROWSERS})
-    ]))
-    .pipe(gulp.dest('.tmp/styles'))
-    .pipe($.size({title: 'styles'}));
-});
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -86,25 +47,110 @@ gulp.task('jshint', function () {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
+// Optimize Images
+gulp.task('images', function () {
+  return gulp.src('app/images/**/*')
+    .pipe($.cache($.imagemin({
+      progressive: true,
+      interlaced: true
+    })))
+    .pipe(gulp.dest('dist/images'))
+    .pipe($.size({title: 'images'}));
+});
+
+// Copy All Files At The Root Level (app)
+gulp.task('copy', function () {
+  var app = gulp.src([
+    'app/*',
+    '!app/test',
+    '!app/*.jade'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist'));
+
+  var bower = gulp.src([
+    'bower_components/**/*'
+  ]).pipe(gulp.dest('dist/bower_components'));
+
+  var elements = gulp.src(['app/elements/**/*.html'])
+    .pipe(gulp.dest('dist/elements'));
+
+  var vulcanized = gulp.src(['app/elements/elements.html'])
+    .pipe($.rename('elements.vulcanized.html'))
+    .pipe(gulp.dest('dist/elements'));
+
+  return merge(app, bower, elements, vulcanized).pipe($.size({title: 'copy'}));
+});
+
+// Copy Web Fonts To Dist
+gulp.task('fonts', function () {
+  return gulp.src(mainBowerFiles().concat('app/fonts/**/*'))
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    .pipe($.flatten())
+    .pipe(gulp.dest('.tmp/fonts'))
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe($.size({title: 'fonts'}));
+});
+
+// Compile and Automatically Prefix Stylesheets
+gulp.task('styles', function () {
+  return gulp.src('app/styles/*.scss')
+    .pipe($.changed('styles', {extension: '.scss'}))
+    .pipe($.rubySass({
+        style: 'expanded',
+        precision: 10,
+        loadPath: ['.']
+      })
+      .on('error', console.error.bind(console))
+    )
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(gulp.dest('.tmp/styles'))
+    // Concatenate And Minify Styles
+    .pipe($.if('*.css', $.cssmin()))
+    .pipe(gulp.dest('dist/styles'))
+    .pipe($.size({title: 'styles'}));
+});
+
+gulp.task('elements', function () {
+  return gulp.src('app/elements/**/*.scss')
+    .pipe($.changed('elements', {extension: '.scss'}))
+    .pipe($.rubySass({
+        style: 'expanded',
+        precision: 10,
+        loadPath: ['.']
+      })
+      .on('error', console.error.bind(console))
+    )
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(gulp.dest('.tmp/elements'))
+    // Concatenate And Minify Styles
+    .pipe($.if('*.css', $.cssmin()))
+    .pipe(gulp.dest('dist/elements'))
+    .pipe($.size({title: 'elements'}));
+});
+
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', ['views', 'styles'], function () {
-  var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
+gulp.task('html', ['views'], function () {
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'dist']});
 
   return gulp.src(['app/**/*.html', '.tmp/*.html', '!app/{elements,test}/**/*.html'])
     // Replace path for vulcanized assets
     .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.vulcanized.html')))
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
+    // Concatenate And Minify JavaScript
+    .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
     // Concatenate And Minify Styles
-    // Issue https://github.com/css/csso/issues/209
-    //.pipe($.if('*.css', $.csso()))
+    // In case you are still using useref build blocks
+    .pipe($.if('*.css', $.cssmin()))
     .pipe(assets.restore())
     .pipe($.useref())
+    // Minify Any HTML
     .pipe($.if('*.html', $.minifyHtml({
       quotes: true,
       empty: true,
       spare: true
     })))
+    // Output Files
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
 });
@@ -118,54 +164,20 @@ gulp.task('views', function () {
 
 // Vulcanize imports
 gulp.task('vulcanize', function () {
-  return gulp.src('app/elements/elements.html')
+  return gulp.src('dist/elements/elements.vulcanized.html')
     .pipe($.vulcanize({
       dest: 'dist/elements',
       strip: true
     }))
-    .pipe($.rename("elements.vulcanized.html"))
     .pipe(gulp.dest('dist/elements'))
     .pipe($.size({title: 'vulcanize'}));
 });
 
-// Optimize Images
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-    .pipe($.size({title: 'images'}));
-});
-
-// Copy Web Fonts To Dist
-gulp.task('fonts', function () {
-  return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
-    .pipe(gulp.dest('.tmp/fonts'))
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({title: 'fonts'}));
-});
-
-// Copy All Files At The Root Level (app)
-gulp.task('extras', function () {
-  return gulp.src([
-    'app/*.*',
-    '!app/*.html',
-    '!app/*.jade'
-  ], {
-    dot: true
-  }).pipe(gulp.dest('dist'))
-  .pipe($.size({title: 'extras'}));
-});
-
 // Clean Output Directory
-gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['views', 'styles', 'fonts'], function () {
+gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
   browserSync({
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
@@ -184,7 +196,7 @@ gulp.task('serve', ['views', 'styles', 'fonts'], function () {
   // watch for changes
   gulp.watch([
     'app/**/*.html',
-    '.tmp/**/*.html',
+    '.tmp/*.html',
     '.tmp/styles/**/*.css',
     '.tmp/elements/**/*.css',
     'app/images/**/*'
@@ -192,7 +204,7 @@ gulp.task('serve', ['views', 'styles', 'fonts'], function () {
 
   gulp.watch('app/**/*.jade', ['views', reload]);
   gulp.watch('app/styles/**/*.scss', ['styles', reload]);
-  gulp.watch('app/elements/**/*.scss', ['styles', reload]);
+  gulp.watch('app/elements/**/*.scss', ['elements', reload]);
   gulp.watch('app/scripts/**/*.js', ['jshint', reload]);
   gulp.watch('app/elements/**/*.js', ['jshint', reload]);
   gulp.watch('bower.json', ['wiredep', 'fonts', reload]);
@@ -259,12 +271,25 @@ gulp.task('pagespeed', function () {
   });
 });
 
-// Build Production Files
-gulp.task('build', ['jshint', 'html', 'vulcanize', 'images', 'fonts', 'extras'], function () {
+// Build Size
+gulp.task('build-size', function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
-// Default Task
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
+// Build Production Files, the Default Task
+gulp.task('default', ['clean'], function (cb) {
+  runSequence(
+    ['copy', 'styles'],
+    'elements',
+    ['jshint', 'images', 'fonts', 'html'],
+    'vulcanize',
+    'build-size',
+    cb);
 });
+
+// Load tasks for web-component-tester
+// Adds tasks for `gulp test:local` and `gulp test:remote`
+try { require('web-component-tester').gulp.init(gulp); } catch (err) {}
+
+// Load custom tasks from the `tasks` directory
+try { require('require-dir')('tasks'); } catch (err) {}
