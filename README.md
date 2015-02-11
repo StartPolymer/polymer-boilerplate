@@ -42,7 +42,7 @@ sudo npm install -g bower gulp npm
 sudo gem install sass
 ```
 
-Can you use [Ubuntu VM Image](http://www.osboxes.org/ubuntu/) for other OS :wink:
+For other OS, you can use [Ubuntu VM Image](http://www.osboxes.org/ubuntu/) :wink:
 
 ## Usage
 
