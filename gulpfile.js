@@ -142,8 +142,12 @@ gulp.task('html', ['views'], function () {
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssmin()))
+    // Revving files
+    .pipe($.revAll())
     .pipe(assets.restore())
     .pipe($.useref())
+    // Updating all references to revved files
+    .pipe($.revReplace())
     // Minify Any HTML
     .pipe($.if('*.html', $.minifyHtml({
       quotes: true,
