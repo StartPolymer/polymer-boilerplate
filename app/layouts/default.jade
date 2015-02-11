@@ -1,10 +1,12 @@
+include ../includes/variables
+
 doctype html
-html(lang='')
+html(lang=lang)
   head
-    meta(charset='utf-8')
-    meta(name='description', content='')
+    meta(charset=charset)
+    title=title
+    meta(name='description', content=description)
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title
 
     link(rel='apple-touch-icon', href='apple-touch-icon.png')
     // Place favicon.ico in the root directory
@@ -14,22 +16,22 @@ html(lang='')
 
     // Fallback to homescreen for Chrome <39 on Android
     meta(name='mobile-web-app-capable', content='yes')
-    meta(name='application-name', content='Polymer Starter Kit')
+    meta(name='application-name', content=title)
     link(rel='icon', sizes='192x192', href='images/touch/chrome-touch-icon-192x192.png')
 
     // Add to homescreen for Safari on iOS
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
-    meta(name='apple-mobile-web-app-title', content='Polymer Starter Kit')
+    meta(name='apple-mobile-web-app-title', content=title)
     link(rel='apple-touch-icon', href='images/touch/apple-touch-icon.png')
 
     // Tile icon for Win8 (144x144 + tile color)
     meta(name='msapplication-TileImage', content='images/touch/ms-touch-icon-144x144-precomposed.png')
-    meta(name='msapplication-TileColor', content='#3372DF')
+    meta(name='msapplication-TileColor', content=theme_color)
 
     // Theme color for Chrome 39+ on Android 5.0
     // http://updates.html5rocks.com/2014/11/Support-for-theme-color-in-Chrome-39-for-Android
-    meta(name='theme-color', content='#3372DF')
+    meta(name='theme-color', content=theme_color)
 
     // SEO: If your mobile URL is different from the desktop URL,
     // add a canonical link to the desktop page
@@ -53,13 +55,12 @@ html(lang='')
     link(rel='import', href='elements/elements.html')
     // endreplace
 
-  body.polymer-theme(unresolved fullbleed layout vertical)
-    | <!--[if lt IE 10]>
-    |     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    | <![endif]-->
-
-    template(is='auto-binding' id='app')
-      block content
+  body(class=theme unresolved)
+    <!--[if lt IE 10]>
+    p.browserupgrade!=browserupgrade
+    <![endif]-->
+    
+    block content
 
     // build:js scripts/vendor.js
     // bower:js

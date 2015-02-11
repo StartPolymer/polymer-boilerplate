@@ -202,7 +202,7 @@ gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
     'app/images/**/*'
   ]).on('change', reload);
 
-  gulp.watch('app/**/*.jade', ['views', reload]);
+  gulp.watch('app/**/*.{jade,md}', ['views', reload]);
   gulp.watch('app/styles/**/*.scss', ['styles', reload]);
   gulp.watch('app/elements/**/*.scss', ['elements', reload]);
   gulp.watch('app/scripts/**/*.js', ['jshint', reload]);

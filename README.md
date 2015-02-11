@@ -122,6 +122,20 @@ bower install web-component-tester --save-dev
 npm install web-component-tester --save-dev
 ```
 
+## Jade Variables
+
+```jade
+//- Layout
+- lang = 'en'
+- charset = 'utf-8'
+- title = 'Polymer Starter Kit'
+- description = ''
+- theme_color = '#3F51B5' //- Indigo 500
+- theme = 'polymer-theme'
+- browserupgrade_url = 'http://outdatedbrowser.com/' + lang
+- browserupgrade = 'You are using an <strong>outdated</strong> browser. Please <a href="' + browserupgrade_url + '">upgrade your browser</a> to improve your experience.'
+```
+
 ## Extending
 
 Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
