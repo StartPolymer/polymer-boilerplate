@@ -13,11 +13,12 @@ Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
 
 - Using [Polymer Theme](https://github.com/StartPolymer/polymer-theme)
 - [Custom Icons](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/elements/custom-icons/custom-icons.html) element
+- [Sass](http://sass-lang.com) CSS preprocessor with [Ruby](https://www.ruby-lang.org)
 - [Jade](http://jade-lang.com) HTML template engine
+- [Markdown](https://help.github.com/articles/github-flavored-markdown/) support with [marked](https://github.com/chjj/marked)
 - Quick deploy to [GitHub Pages](https://pages.github.com) -
 Free [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) hosting -
 [more info](https://github.com/blog/1715-faster-more-awesome-github-pages)
-- [Sass](http://sass-lang.com) CSS preprocessor with [Ruby](https://www.ruby-lang.org)
 - [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
 - Built-in preview server with [BrowserSync](http://www.browsersync.io)
@@ -40,6 +41,8 @@ sudo npm install -g bower gulp npm
 # Install Sass
 sudo gem install sass
 ```
+
+Can you use [Ubuntu VM Image](http://www.osboxes.org/ubuntu/) for other OS :wink:
 
 ## Usage
 
@@ -124,8 +127,9 @@ npm install web-component-tester --save-dev
 
 ## Jade Variables
 
+Variables in [variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
+
 ```jade
-//- Layout
 - lang = 'en'
 - charset = 'utf-8'
 - title = 'Polymer Starter Kit'
