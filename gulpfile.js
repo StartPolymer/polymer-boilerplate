@@ -282,8 +282,8 @@ gulp.task('gzip', function() {
 gulp.task('build-size', function () {
   return gulp.src([
     'dist/**/*',
-    '!dist/**/*.gz'
-    ]).pipe($.size({title: 'build', gzip: true}));
+    '!dist/**/*.{txt,html,xml,json,css,js}'
+    ]).pipe($.size({title: 'build (gzipped)'}));
 });
 
 // Build Production Files, the Default Task
