@@ -20,6 +20,7 @@
     "gulp-jshint": "^1.5.3",
     "gulp-load-plugins": "^0.8.0",
     "gulp-minify-html": "^0.1.6",
+    "gulp-pako": "^0.1.1",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.5.2",
     "gulp-ruby-sass": "^0.7.1",

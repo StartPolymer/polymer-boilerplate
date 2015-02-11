@@ -271,9 +271,19 @@ gulp.task('pagespeed', function () {
   });
 });
 
-// Build Size
+// Gzip text files
+gulp.task('gzip', function() {
+  gulp.src('dist/**/*.{txt,html,xml,json,css,js}')
+    .pipe($.pako.gzip())
+    .pipe(gulp.dest('dist'));
+});
+
+// Get gzipped size of build
 gulp.task('build-size', function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src([
+    'dist/**/*',
+    '!dist/**/*.gz'
+    ]).pipe($.size({title: 'build', gzip: true}));
 });
 
 // Build Production Files, the Default Task
@@ -283,6 +293,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'vulcanize',
+    'gzip',
     'build-size',
     cb);
 });

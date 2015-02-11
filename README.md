@@ -20,6 +20,8 @@ Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
 Free [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) hosting -
 [more info](https://github.com/blog/1715-faster-more-awesome-github-pages)
 - [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
+- [Compress text files with Pako](https://github.com/jameswyse/gulp-pako)
+for avoiding the overhead of on-the-fly compression on server
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
 - Built-in preview server with [BrowserSync](http://www.browsersync.io)
 - Automagically wire-up dependencies installed with [Bower](http://bower.io)
