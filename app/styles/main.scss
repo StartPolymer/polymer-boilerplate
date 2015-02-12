@@ -17,6 +17,24 @@ $body-font:             roboto-font($heading-font-name, 'body');
   /deep/ {
     @import 'bower_components/polymer-theme/sass/elements/all';
   }
+
+  [drawer] {
+    background-color: #eee;
+  }
+
+  main {
+    padding-left: 30px;
+
+    a {
+      color: $dark-primary-color;
+    }
+
+    core-icon[icon="custom-icons:polymer"] {
+      color: $primary-color;
+      height: 50px;
+      width: 50px;
+    }
+  }
 }
 
 .browserupgrade {
