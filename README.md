@@ -16,11 +16,8 @@ Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
 - [Sass](http://sass-lang.com) CSS preprocessor with [Ruby](https://www.ruby-lang.org)
 - [Jade](http://jade-lang.com) HTML template engine
 - [Markdown](https://help.github.com/articles/github-flavored-markdown/) support with [marked](https://github.com/chjj/marked)
-- Quick deploy to [GitHub Pages](https://pages.github.com) -
-Free [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) hosting -
-[more info](https://github.com/blog/1715-faster-more-awesome-github-pages)
 - [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
-- [Asset revisioning](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/asset-revisioning.md)
+- [Asset revisioning](https://github.com/smysnk/gulp-rev-all)
 for CSS and JS by appending content hash to their filenames
 - [Compress text files with Pako](https://github.com/jameswyse/gulp-pako)
 for avoiding the overhead of on-the-fly compression on server
@@ -28,6 +25,8 @@ for avoiding the overhead of on-the-fly compression on server
 - Built-in preview server with [BrowserSync](http://www.browsersync.io)
 - Automagically wire-up dependencies installed with [Bower](http://bower.io)
 - [web-component-tester](https://github.com/Polymer/web-component-tester) support
+- Quick deploy to [CDN](http://en.wikipedia.org/wiki/Content_delivery_network) Hosting
+ - [GitHub Pages](https://pages.github.com) - [more info](https://github.com/blog/1715-faster-more-awesome-github-pages)
 
 ## Installation
 
@@ -98,14 +97,7 @@ git checkout master
 ```
 
 ```sh
-gulp deploy
-```
-
-Variables in [gulpfile.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulpfile.js)
-
-```javascript
-var ghPagesOrigin = 'origin';
-var ghPagesBranch = 'gh-pages';
+gulp deploy:gh
 ```
 
 ### PageSpeed Insights
@@ -114,35 +106,24 @@ var ghPagesBranch = 'gh-pages';
 gulp pagespeed
 ```
 
-Variables in [gulpfile.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulpfile.js)
-
-```javascript
-var pageSpeedSite = 'https://startpolymer.org'; // change it
-var pageSpeedStrategy = 'mobile'; // desktop
-var pageSpeedKey = ''; // nokey is true
-```
-
 ### Install web-component-tester
 
-```
+```sh
 bower install web-component-tester --save-dev
 npm install web-component-tester --save-dev
 ```
 
+## Gulp Variables
+
+Gulp variables are in the file [gulp/config.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulp/config.js)
+
 ## Jade Variables
 
-Variables in [variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
+Jade variables are in the file [app/includes/variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
 
-```jade
-- lang = 'en'
-- charset = 'utf-8'
-- title = 'Polymer Starter Kit'
-- description = ''
-- theme_color = '#3F51B5' //- Indigo 500
-- theme = 'polymer-theme'
-- browserupgrade_url = 'http://outdatedbrowser.com/' + lang
-- browserupgrade = 'You are using an <strong>outdated</strong> browser. Please <a href="' + browserupgrade_url + '">upgrade your browser</a> to improve your experience.'
-```
+## Sass Variables
+
+Sass variables are in the file [app/styles/_variables.scss](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/styles/_variables.scss)
 
 ## Extending
 

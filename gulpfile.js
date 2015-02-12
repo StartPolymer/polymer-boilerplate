@@ -1,37 +1,13 @@
 /* global -$ */
 'use strict';
 
-// GitHub Pages
-var ghPagesOrigin = 'origin';
-var ghPagesBranch = 'gh-pages';
-
-// PageSpeed Insights
-var pageSpeedSite = 'https://startpolymer.org'; // change it
-var pageSpeedStrategy = 'mobile'; // desktop
-var pageSpeedKey = ''; // nokey is true
-
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var del = require('del');
-var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
-var pageSpeed = require('psi');
 var merge = require('merge-stream');
-var mainBowerFiles = require('main-bower-files');
-
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
+var config = require('./gulp/config');
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -84,7 +60,7 @@ gulp.task('copy', function () {
 
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
-  return gulp.src(mainBowerFiles().concat('app/fonts/**/*'))
+  return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
     .pipe(gulp.dest('.tmp/fonts'))
@@ -103,7 +79,7 @@ gulp.task('styles', function () {
       })
       .on('error', console.error.bind(console))
     )
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.autoprefixer(config.autoprefixer.browsers))
     .pipe(gulp.dest('.tmp/styles'))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.cssmin()))
@@ -121,7 +97,7 @@ gulp.task('elements', function () {
       })
       .on('error', console.error.bind(console))
     )
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.autoprefixer(config.autoprefixer.browsers))
     .pipe(gulp.dest('.tmp/elements'))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.cssmin()))
@@ -177,18 +153,13 @@ gulp.task('vulcanize', function () {
     .pipe($.size({title: 'vulcanize'}));
 });
 
-// Clean Output Directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
-
 // Watch Files For Changes & Reload
 gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
   browserSync({
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    notify: false,
-    port: 9000,
+    browser: config.browserSync.browser,
+    https: config.browserSync.https,
+    notify: config.browserSync.notify,
+    port: config.browserSync.port,
     server: {
       baseDir: ['.tmp', 'app'],
       routes: {
@@ -217,12 +188,10 @@ gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], function () {
   browserSync({
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    notify: false,
-    port: 9000,
+    browser: config.browserSync.browser,
+    https: config.browserSync.https,
+    notify: config.browserSync.notify,
+    port: config.browserSync.port,
     server: 'dist'
   });
 });
@@ -245,27 +214,23 @@ gulp.task('wiredep', function () {
 });
 
 // Deploy to GitHub Pages
-gulp.task('deploy', function () {
+gulp.task('deploy:gh', function () {
   return gulp.src('dist/**/*')
     .pipe($.ghPages({
-      origin: ghPagesOrigin,
-      branch: ghPagesBranch
+      branch: config.ghPages.branch,
+      origin: config.ghPages.origin
     }));
 });
 
 // Run PageSpeed Insights
-// Please feel free to use the `nokey` option to try out PageSpeed
-// Insights as part of your build process. For more frequent use,
-// we recommend registering for your own API key. For more info:
-// https://developers.google.com/speed/docs/insights/v1/getting_started
 gulp.task('pagespeed', function () {
-  return pageSpeed(pageSpeedSite, {
-    nokey: 'true',
-    // key: pageSpeedKey,
-    strategy: pageSpeedStrategy
+  return require('psi')(config.pageSpeed.site, {
+    nokey: config.pageSpeed.nokey,
+    // key: config.pageSpeed.key,
+    strategy: config.pageSpeed.strategy
   }, function (err, data) {
-    console.log('Site: ' + pageSpeedSite);
-    console.log('Strategy: ' + pageSpeedStrategy);
+    console.log('Site: ' + config.pageSpeed.site);
+    console.log('Strategy: ' + config.pageSpeed.strategy);
     if (err) {
       console.log(err);
     } else {
@@ -290,9 +255,12 @@ gulp.task('build-size', function () {
     ]).pipe($.size({title: 'build (gzipped)'}));
 });
 
+// Clean Output Directory
+gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence(
+  require('run-sequence')(
     ['copy', 'styles'],
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
