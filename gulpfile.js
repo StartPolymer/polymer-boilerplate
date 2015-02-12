@@ -208,9 +208,13 @@ gulp.task('wiredep', function () {
 
   gulp.src('app/layouts/*.jade')
     .pipe(wiredep({
-      ignorePath: /^(\.\.\/)*\.\./
+      ignorePath: /^(\.\.\/)*\.\./,
+      exclude: [
+        'bower_components/polymer/polymer.js',
+        'bower_components/webcomponentsjs/webcomponents.js'
+      ]
     }))
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest('app/layouts'));
 });
 
 // Deploy to GitHub Pages
