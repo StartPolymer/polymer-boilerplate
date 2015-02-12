@@ -38,21 +38,21 @@ html(lang=lang)
     // https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // <link rel="canonical" href="http://www.example.com/">
 
-    // build:css styles/vendor.css
+    // build:css /styles/vendor.css
     // bower:css
     // endbower
     // endbuild
 
-    // build:css styles/main.css
-    link(rel='stylesheet', href='styles/main.css')
+    // build:css /styles/main.css
+    link(rel='stylesheet', href='/styles/main.css')
     // endbuild
 
-    // build:js bower_components/webcomponentsjs/webcomponents.min.js
-    script(src='bower_components/webcomponentsjs/webcomponents.js')
+    // build:js /bower_components/webcomponentsjs/webcomponents.min.js
+    script(src='/bower_components/webcomponentsjs/webcomponents.js')
     // endbuild
 
-    // replace elements/elements.vulcanized.html
-    link(rel='import', href='elements/elements.html')
+    // replace /elements/elements.vulcanized.html
+    link(rel='import', href='/elements/elements.html')
     // endreplace
 
   body(class=theme unresolved)
@@ -62,11 +62,11 @@ html(lang=lang)
     
     block content
 
-    // build:js scripts/vendor.js
+    // build:js /scripts/vendor.js
     // bower:js
     // endbower
     // endbuild
 
-    // build:js scripts/app.js
-    script(src='scripts/app.js')
+    // build:js /scripts/app.js
+    script(src='/scripts/app.js')
     // endbuild

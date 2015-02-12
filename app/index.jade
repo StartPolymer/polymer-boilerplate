@@ -9,15 +9,17 @@ block content
 				// Drawer Toolbar
 				core-toolbar Menu
 				// Drawer Content
-				core-menu(selected='0')
-					core-item(label='Yo')
-					core-item(label='Polymer')
-					core-item(label='App')
+				nav
+					core-menu(selected='0')
+						core-item(label='Polymer')
+						core-item(label='Starter')
+						core-item(label='Kit')
 			// Main
 			core-header-panel(main)
 				// Main Toolbar
 				core-toolbar
 					paper-icon-button(icon='menu', core-drawer-toggle)
 					span {{appName}}
-				// Main Content
-				include:markdown pages/home.md
+				// Main Content with Markdown
+				main
+					include:markdown pages/home.md
