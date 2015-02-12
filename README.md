@@ -46,7 +46,11 @@ sudo gem install sass
 ```
 
 For install great [Atom](https://atom.io) editor is
+<<<<<<< HEAD
 [Atom on Ubuntu](https://gist.github.com/6d7386cb7011cc8f5d37) script.
+=======
+[Atom on Ubuntu](https://gist.github.com/6d7386cb7011cc8f5d37) script
+>>>>>>> origin/develop
 
 For other OS, you can use [Ubuntu VM Image](http://www.osboxes.org/ubuntu/) :wink:
 
