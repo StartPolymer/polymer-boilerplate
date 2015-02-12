@@ -37,13 +37,16 @@ for avoiding the overhead of on-the-fly compression on server
 sudo add-apt-repository -y ppa:brightbox/ruby-ng
 # Script to install NodeSource repository
 curl -sL https://deb.nodesource.com/setup | sudo bash -
-# Install Node.js and Ruby
-sudo apt-get install -y nodejs ruby2.2
+# Install Git, Node.js and Ruby
+sudo apt-get install -y git nodejs ruby2.2
 # Install Bower, Gulp and NPM
 sudo npm install -g bower gulp npm
 # Install Sass
 sudo gem install sass
 ```
+
+For install great [Atom](https://atom.io) editor is
+[Atom on Ubuntu](https://gist.github.com/6d7386cb7011cc8f5d37) script
 
 For other OS, you can use [Ubuntu VM Image](http://www.osboxes.org/ubuntu/) :wink:
 
