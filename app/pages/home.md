@@ -20,16 +20,19 @@
 
 ## Blockquote
 
-> Blockquote using &lt;blockquote&gt;
+> Blockquote using &lt;blockquote&gt; element
 
 ## Code and Syntax Highlighting
+
+`Inline code` formatting
+
+<!-- Only for demo, you can use "bower install highlightjs --save" -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 
 ```javascript
 var s = "JavaScript syntax highlighting";
 alert(s);
 ```
-
-`Inline code` formatting
 
 ## Inline HTML
 
@@ -60,5 +63,3 @@ alert(s);
 - http://assemble.io/docs/Cheatsheet-Markdown.html
 
 [Visit Start Polymer](https://startpolymer.org)
-
-<script src="https://gist.github.com/jonschlinkert/5854601.js"></script>
