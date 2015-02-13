@@ -53,11 +53,7 @@ gulp.task('copy', function () {
 
   var vulcanized = gulp.src(['app/elements/elements.html'])
     .pipe($.rename('elements.vulcanized.html'))
-    // Revving file
-    .pipe($.revAll())
-    .pipe(gulp.dest('dist/elements'))
-    .pipe($.revAll.manifest())
-    .pipe(gulp.dest('.tmp'));
+    .pipe(gulp.dest('dist/elements'));
 
   return merge(app, bower, elements, vulcanized).pipe($.size({title: 'copy'}));
 });
@@ -122,7 +118,7 @@ gulp.task('html', ['views'], function () {
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssmin()))
-    // Revving files
+    // Revving files with child references into consideration when calculating a hashes
     .pipe($.revAll())
     .pipe(assets.restore())
     .pipe($.useref())
@@ -161,8 +157,13 @@ gulp.task('vulcanize', function () {
       dest: 'dist/elements',
       strip: true
     }))
+    // Revving file
+    .pipe($.rev())
     .pipe(gulp.dest('dist/elements'))
-    .pipe($.size({title: 'vulcanize'}));
+    .pipe($.size({title: 'vulcanize'}))
+    // Write rev-manifest.json to .tmp
+    .pipe($.revAll.manifest())
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Watch Files For Changes & Reload
