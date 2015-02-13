@@ -18,7 +18,7 @@ Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
 - [Markdown](https://help.github.com/articles/github-flavored-markdown/) support with [marked](https://github.com/chjj/marked)
 - [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS
 - [Asset revisioning](https://github.com/smysnk/gulp-rev-all)
-for CSS and JS by appending content hash to their filenames
+for CSS, HTML and JS by appending content hash to their filenames
 - [Compress text files with Pako](https://github.com/jameswyse/gulp-pako)
 for avoiding the overhead of on-the-fly compression on server
 - [PageSpeed Insights](https://developers.google.com/speed/docs/insights/about) for performance tuning
@@ -116,15 +116,11 @@ bower install web-component-tester --save-dev
 npm install web-component-tester --save-dev
 ```
 
-## Gulp Variables
+## Variables
 
 Gulp variables are in the file [gulp/config.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulp/config.js)
 
-## Jade Variables
-
 Jade variables are in the file [app/includes/variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
-
-## Sass Variables
 
 Sass variables are in the file [app/styles/_variables.scss](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/styles/_variables.scss)
 
