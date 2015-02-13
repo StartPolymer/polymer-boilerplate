@@ -53,7 +53,11 @@ gulp.task('copy', function () {
 
   var vulcanized = gulp.src(['app/elements/elements.html'])
     .pipe($.rename('elements.vulcanized.html'))
-    .pipe(gulp.dest('dist/elements'));
+    // Revving file
+    .pipe($.revAll())
+    .pipe(gulp.dest('dist/elements'))
+    .pipe($.revAll.manifest())
+    .pipe(gulp.dest('.tmp'));
 
   return merge(app, bower, elements, vulcanized).pipe($.size({title: 'copy'}));
 });
@@ -137,6 +141,14 @@ gulp.task('html', ['views'], function () {
 
 // Jade
 gulp.task('views', function () {
+  var marked = require('marked');
+  // Synchronous highlighting with highlight.js
+  marked.setOptions({
+    highlight: function (code) {
+      return require('highlight.js').highlightAuto(code).value;
+    }
+  });
+
   return gulp.src('app/*.jade')
     .pipe($.jade({pretty: true}))
     .pipe(gulp.dest('.tmp'));
@@ -244,8 +256,18 @@ gulp.task('pagespeed', function () {
   });
 });
 
+// Updating all references in manifest to revved files
+gulp.task('revreplace', function () {
+  var manifest = require('./.tmp/rev-manifest.json');
+  var stream = gulp.src('dist/index.html');
+
+  Object.keys(manifest).reduce(function(stream, key){
+    return stream.pipe($.replace(key, manifest[key]));
+  }, stream).pipe(gulp.dest('dist'));
+});
+
 // Gzip text files
-gulp.task('gzip', function() {
+gulp.task('gzip', function () {
   gulp.src('dist/**/*.{txt,html,xml,json,css,js}')
     .pipe($.pako.gzip())
     .pipe(gulp.dest('dist'));
@@ -269,6 +291,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'vulcanize',
+    'revreplace',
     'gzip',
     'build-size',
     cb);
