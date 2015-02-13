@@ -4,13 +4,9 @@
 
 ### &lt;h3&gt;
 
-*italic*
+---
 
-**bold**
-
-*You **can** combine them*
-
-~~strikethrough~~
+*italic* **bold** ~~strikethrough~~
 
 ## List
 
@@ -36,13 +32,9 @@ alert(s);
 
 ## Inline HTML
 
-<core-icon icon="custom-icons:polymer"></core-icon>
+Custom SVG icon <core-icon icon="custom-icons:polymer"></core-icon>
 
-<p>Paragraph using &lt;p&gt; element</p>
-
-## Horizontal Rule
-
----
+<p>Paragraph with &lt;p&gt; element</p>
 
 ## Table
 
@@ -54,12 +46,14 @@ alert(s);
 
 ## Image
 
-![Alt Text](http://lorempicsum.com/rio/350/200/1)
+![Alt Text](https://www.polymer-project.org/images/logos/p-logo.svg)
+
+## Youtube video
+
+[![Polycasts](http://img.youtube.com/vi/jrt7sMq9lO0/0.jpg)](https://www.youtube.com/watch?v=jrt7sMq9lO0&index=1&list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN)
 
 ## Links
 
-- https://guides.github.com/features/mastering-markdown/
-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-- http://assemble.io/docs/Cheatsheet-Markdown.html
+[Markdown Cheatsheet](https://gist.github.com/JosefJezek/39674d315b0f518cbb53)
 
-[Visit Start Polymer](https://startpolymer.org)
+https://startpolymer.org
