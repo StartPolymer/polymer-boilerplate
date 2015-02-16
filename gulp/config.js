@@ -3,15 +3,15 @@ module.exports = {
 	autoprefixer: {
 		// https://github.com/postcss/autoprefixer#browsers
 		browsers: [
-			'ie >= 10',
-			'ie_mob >= 10',
-			'ff >= 30',
-			'chrome >= 34',
-			'safari >= 7',
-			'opera >= 23',
-			'ios >= 7',
-			'android >= 4.4',
-			'bb >= 10'
+			'Explorer >= 10',
+			'ExplorerMobile >= 10',
+			'Firefox >= 30',
+			'Chrome >= 34',
+			'Safari >= 7',
+			'Opera >= 23',
+			'iOS >= 7',
+			'Android >= 4.4',
+			'BlackBerry >= 10'
 		]
 	},
 	// BrowserSync
