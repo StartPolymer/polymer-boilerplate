@@ -60,9 +60,9 @@ gulp.task('copy', function () {
 
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
-  return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
+  return gulp.src(require('main-bower-files')({
+    filter: '**/*.{eot,svg,ttf,woff,woff2}'
+  }).concat('app/fonts/**/*'))
     .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'))
     .pipe($.size({title: 'fonts'}));
@@ -187,7 +187,8 @@ gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
     '.tmp/*.html',
     '.tmp/styles/**/*.css',
     '.tmp/elements/**/*.css',
-    'app/images/**/*'
+    'app/images/**/*',
+    '.tmp/fonts/**/*'
   ]).on('change', reload);
 
   gulp.watch('app/**/*.{jade,md}', ['views', reload]);
@@ -195,7 +196,8 @@ gulp.task('serve', ['views', 'styles', 'elements', 'fonts'], function () {
   gulp.watch('app/elements/**/*.scss', ['elements', reload]);
   gulp.watch('app/scripts/**/*.js', ['jshint', reload]);
   gulp.watch('app/elements/**/*.js', ['jshint', reload]);
-  gulp.watch('bower.json', ['wiredep', 'fonts', reload]);
+  gulp.watch('app/fonts/**/*', ['fonts']);
+  gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
 // Build and serve the output from the dist build
