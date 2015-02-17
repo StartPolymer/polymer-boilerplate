@@ -21,7 +21,7 @@ gulp.task('elements', getTask('elements'));
 gulp.task('fonts', getTask('fonts'));
 
 // Scan Your HTML For Assets & Optimize Them
-gulp.task('html', ['jade'], getTask('html'));
+gulp.task('html', getTask('html'));
 
 // Optimize Images
 gulp.task('images', getTask('images'));
@@ -75,6 +75,7 @@ gulp.task('vulcanize', getTask('vulcanize'));
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   require('run-sequence')(
+    'jade',
     ['copy', 'styles'],
     'elements',
     ['jshint', 'images', 'fonts', 'html'],

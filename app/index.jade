@@ -2,7 +2,7 @@ extends layouts/default
 include includes/variables
 
 block content
-	template(is='auto-binding' id='app')
+	template(is='auto-binding', id='app')
 		core-drawer-panel
 			// Drawer
 			core-header-panel(drawer)
@@ -10,10 +10,19 @@ block content
 				core-toolbar Menu
 				// Drawer Content
 				nav
-					core-menu(selected='0')
-						core-item(label='Polymer')
-						core-item(label='Starter')
-						core-item(label='Kit')
+					core-selector(selected='0')
+						paper-item
+							core-icon(icon='custom-icons:polymer')
+							a(href='#') Polymer
+							paper-ripple(initialOpacity='1', fit)
+						paper-item
+							core-icon(icon='custom-icons:polymer')
+							a(href='#') Starter
+							paper-ripple(initialOpacity='1', fit)
+						paper-item
+							core-icon(icon='custom-icons:polymer')
+							a(href='#') Kit
+							paper-ripple(initialOpacity='1', fit)
 			// Main
 			core-header-panel(main)
 				// Main Toolbar

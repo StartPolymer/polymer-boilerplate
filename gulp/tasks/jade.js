@@ -2,15 +2,19 @@
 
 // Jade
 module.exports = function (gulp, plugins, config) { return function () {
-	var marked = require('marked');
 	// Synchronous highlighting with highlight.js
-	marked.setOptions({
+	require('marked').setOptions({
 		highlight: function (code) {
 			return require('highlight.js').highlightAuto(code).value;
 		}
 	});
 
-	return gulp.src('app/*.jade')
-		.pipe(plugins.jade({pretty: true}))
-		.pipe(gulp.dest('.tmp'));
+	return require('merge-stream')(
+		gulp.src('app/*.jade')
+			.pipe(plugins.jade({pretty: true}))
+			.pipe(gulp.dest('.tmp')),
+		gulp.src('app/elements/**/*.jade')
+			.pipe(plugins.jade({pretty: true}))
+			.pipe(gulp.dest('.tmp/elements'))
+	);
 };};

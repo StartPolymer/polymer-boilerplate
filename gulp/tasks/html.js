@@ -23,8 +23,9 @@ module.exports = function (gulp, plugins, config) { return function () {
 		.pipe(plugins.revReplace())
 		// Minify Any HTML
 		.pipe(plugins.if('*.html', plugins.minifyHtml({
-			quotes: true,
 			empty: true,
+			loose: true,
+			quotes: true,
 			spare: true
 		})))
 		// Output Files

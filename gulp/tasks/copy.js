@@ -15,10 +15,13 @@ module.exports = function (gulp, plugins, config) { return function () {
 		'bower_components/**/*'
 	]).pipe(gulp.dest('dist/bower_components'));
 
-	var elements = gulp.src(['app/elements/**/*.html'])
+	var elements = gulp.src([
+			'.tmp/elements/**/*.html',
+			'!.tmp/elements/elements.html'
+		])
 		.pipe(gulp.dest('dist/elements'));
 
-	var vulcanized = gulp.src(['app/elements/elements.html'])
+	var vulcanized = gulp.src(['.tmp/elements/elements.html'])
 		.pipe(plugins.rename('elements.vulcanized.html'))
 		.pipe(gulp.dest('dist/elements'));
 
