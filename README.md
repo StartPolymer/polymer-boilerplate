@@ -65,10 +65,15 @@ git clone <Fork of this repository>
 bower install && npm install
 ```
 
+### Check variables
+
+- Gulp variables are in the file [gulp/config.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulp/config.js)
+- Jade variables are in the file [app/includes/variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
+- Sass variables are in the file [app/styles/_variables.scss](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/styles/_variables.scss)
+
 ### Serve to local and external URL
 
-- `http://localhost:9000`
-- `http://<IP>:9000`
+`http://localhost:9000` or `http://<Your IP>:9000`
 
 ```sh
 gulp serve
@@ -85,6 +90,15 @@ gulp serve:dist
 ```sh
 gulp
 ```
+
+### Install web-component-tester
+
+```sh
+bower install web-component-tester --save-dev
+npm install web-component-tester --save-dev
+```
+
+## Deploy
 
 ### Deploy to GitHub Pages
 
@@ -104,31 +118,19 @@ git checkout master
 gulp deploy:gh
 ```
 
+## Tools
+
 ### PageSpeed Insights
 
 ```sh
 gulp pagespeed
 ```
 
-### Install web-component-tester
-
-```sh
-bower install web-component-tester --save-dev
-npm install web-component-tester --save-dev
-```
-
-## Variables
-
-Gulp variables are in the file [gulp/config.js](https://github.com/StartPolymer/polymer-boilerplate/blob/master/gulp/config.js)
-
-Jade variables are in the file [app/includes/variables.jade](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/includes/variables.jade)
-
-Sass variables are in the file [app/styles/_variables.scss](https://github.com/StartPolymer/polymer-boilerplate/blob/master/app/styles/_variables.scss)
-
 ## Extending
 
 Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
-for integrating other popular technologies like CoffeeScript.
+for integrating other popular technologies like CoffeeScript. Or this a
+[recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes).
 
 ## [MIT License](https://github.com/StartPolymer/polymer-boilerplate/blob/master/LICENSE)
 
