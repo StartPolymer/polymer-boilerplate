@@ -92,13 +92,6 @@ gulp serve:dist
 gulp
 ```
 
-### Install web-component-tester
-
-```sh
-bower install web-component-tester --save-dev
-npm install web-component-tester --save-dev
-```
-
 ## Deploy
 
 ### Deploy to GitHub Pages
@@ -132,6 +125,13 @@ gulp pagespeed
 Use a [recipes](https://github.com/yeoman/generator-gulp-webapp/blob/master/docs/recipes/README.md)
 for integrating other popular technologies like CoffeeScript. Or this a
 [recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes).
+
+### [web-component-tester](https://github.com/Polymer/web-component-tester)
+
+```sh
+bower install web-component-tester --save-dev
+npm install web-component-tester --save-dev
+```
 
 ## [MIT License](https://github.com/StartPolymer/polymer-boilerplate/blob/master/LICENSE)
 
