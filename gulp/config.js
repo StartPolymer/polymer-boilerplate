@@ -32,7 +32,7 @@ module.exports = {
 	// we recommend registering for your own API key. For more info:
 	// https://developers.google.com/speed/docs/insights/v1/getting_started
 	pageSpeed: {
-		key: '', // need uncomment in gulpfile.js
+		key: '', // need uncomment in task
 		nokey: true,
 		site: 'https://startpolymer.org', // change it
 		strategy: 'mobile' // or desktop
