@@ -4,8 +4,9 @@ Polymer Boilerplate is template using Web Components and modern tools.
 
 Fork this repo if you want to start your own application using Polymer.
 
-Inspired by [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
+Inspired by
 [Web Starter Kit](https://github.com/google/web-starter-kit),
+[HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate),
 [Polymer generator](https://github.com/yeoman/generator-polymer) and
 [Gulp generator](https://github.com/yeoman/generator-gulp-webapp).
 
@@ -73,7 +74,7 @@ bower install && npm install
 
 ### Serve to local and external URL
 
-`http://localhost:9000` or `http://<Your IP>:9000`
+`http://localhost:9000` and `http://<Your IP>:9000`
 
 ```sh
 gulp serve
