@@ -13,6 +13,7 @@ module.exports = function (gulp, plugins, config) { return function () {
 		gulp.src('app/*.jade')
 			.pipe(plugins.jade({pretty: true}))
 			.pipe(gulp.dest('.tmp')),
+			
 		gulp.src('app/elements/**/*.jade')
 			.pipe(plugins.jade({pretty: true}))
 			.pipe(gulp.dest('.tmp/elements'))
