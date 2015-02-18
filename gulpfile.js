@@ -77,8 +77,7 @@ gulp.task('default', ['clean'], function (cb) {
   require('run-sequence')(
     'jade',
     ['copy', 'styles'],
-    'elements',
-    ['jshint', 'images', 'fonts', 'html'],
+    ['jshint', 'images', 'fonts', 'html', 'elements'],
     'vulcanize',
     'revreplace',
     'gzip',
