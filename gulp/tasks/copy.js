@@ -16,8 +16,8 @@ module.exports = function (gulp, plugins, config) { return function () {
 
 		gulp.src('.tmp/elements/**/*.html')
 			.pipe(gulp.dest('dist/elements')),
-			
-		gulp.src(['.tmp/elements/elements.html'])
+
+		gulp.src('.tmp/elements/elements.html')
 			.pipe(plugins.rename('elements.vulcanized.html'))
 			.pipe(gulp.dest('dist/elements'))
 	).pipe(plugins.size({title: 'copy'}));
